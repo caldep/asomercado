@@ -5,3 +5,12 @@
 #   email: bob@gmail.com
 #   password: secret
 #   fullname: Bob
+
+Listado(lista):
+    nombre         :   listado1
+    feCreacion     :   2015-04-20
+    feModifcacion  :   2015-04-20
+    contenido      :   >
+                        articulo de prueba.
+                        articulo2.
+
