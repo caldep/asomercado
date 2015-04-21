@@ -13,24 +13,30 @@ import javax.persistence.*;
 public class Listado extends Model{
 
     public String   nombre;
-
-    @Lob
-    @Type(type = "org.hibernate.type.TextType")
-    public String   contenido;
-
     public Date     feCreacion;
-    public Date     feModifcacion;
+    public Date     feModificacion;
     public Boolean  isActivo;
 
+    @OneToMany(mappedBy="lista", cascade=CascadeType.ALL)
+    public List<Articulo> articulos;
+
     //-----------------------------------------------------
-    public Listado(String nombre, String contenido)
+    public Listado(String nombre)
     {
         this.nombre         =   nombre;
-        this.contenido      =   contenido;
         this.feCreacion     =   new Date();
-        this.feModifcacion  =   new Date();
+        this.feModificacion =   this.feCreacion;
         this.isActivo       =   true;
+        this.articulos      =   new ArrayList<Articulo>();
     }
     //-----------------------------------------------------
+    public Listado addArticulo(String descripcion) {
+        Articulo newArticulo = new Articulo(this, descripcion).save();
+        this.articulos.add(newArticulo);
+        this.feModificacion = new Date();
+        this.save();
+        return this;
+    }
+    //------------------------------------------------------
 
 }

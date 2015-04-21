@@ -6,11 +6,46 @@
 #   password: secret
 #   fullname: Bob
 
-Listado(lista):
+Listado(lista1):
     nombre         :   listado1
     feCreacion     :   2015-04-20
-    feModifcacion  :   2015-04-20
-    contenido      :   >
-                        articulo de prueba.
-                        articulo2.
+    feModificacion :   2015-04-20
+
+Listado(lista2):
+    nombre         :   listado2
+    feCreacion     :   2015-04-21
+    feModificacion :   2015-04-21
+
+Articulo(articulo1):
+    descripcion    :   Tomate
+    lista          :   lista1
+
+Articulo(articulo2):
+    descripcion    :   Cebolla
+    lista          :   lista1
+
+Articulo(articulo3):
+    descripcion    :   Pepino
+    lista          :   lista1
+
+Articulo(articulo4):
+    descripcion    :   Carne
+    lista          :   lista2
+
+Articulo(articulo5):
+    descripcion    :   Pollo
+    lista          :   lista2
+
+Articulo(articulo6):
+    descripcion    :   Pescado
+    lista          :   lista2
+
+Articulo(articulo7):
+    descripcion    :   Lechuga
+    lista          :   lista1
+
+
+
+
+
 
