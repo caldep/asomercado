@@ -15,6 +15,7 @@ public class BasicTest extends UnitTest {
     public void limpiarDatosPrueba()
     {
         Fixtures.deleteAll();
+        Fixtures.deleteAllModels();
     }
 
     //-----------------------------------------------------------------------------------
@@ -98,8 +99,8 @@ public class BasicTest extends UnitTest {
         Fixtures.load("data.yml");
 
         // contabiliza registros
-        assertEquals(2, Listado.count());
-        assertEquals(7, Articulo.count());
+        assertEquals(4, Listado.count());
+        assertEquals(10, Articulo.count());
 
         // consulta las listas1
         List<Listado> listas = Listado.find("byNombre", "listado1").fetch();
@@ -112,7 +113,7 @@ public class BasicTest extends UnitTest {
         // Encuentra la última lista modificada
         Listado ultimaListaModificada = Listado.find("order by feModificacion desc").first();
         assertNotNull(ultimaListaModificada);
-        assertEquals("listado2", ultimaListaModificada.nombre);
+        assertEquals("listado3", ultimaListaModificada.nombre);
 
         // verifica que la última lista modificada tenga 3 articulos
         assertEquals(3, ultimaListaModificada.articulos.size());
@@ -120,6 +121,6 @@ public class BasicTest extends UnitTest {
         // Agrega un nuevo artículo a la lista
         ultimaListaModificada.addArticulo("Cerdo");
         assertEquals(4, ultimaListaModificada.articulos.size());
-        assertEquals(8, Articulo.count());
+        assertEquals(11, Articulo.count());
     }
 }

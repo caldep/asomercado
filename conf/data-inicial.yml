@@ -43,3 +43,32 @@ Articulo(articulo6):
 Articulo(articulo7):
     descripcion    :   Lechuga
     lista          :   lista1
+
+Listado(lista3):
+    nombre         :   listado3
+    feCreacion     :   2015-04-22
+    feModificacion :   2015-04-22
+
+Listado(lista4):
+    nombre         :   listado4
+    feCreacion     :   2015-04-19
+    feModificacion :   2015-04-19
+
+Articulo(articulo8):
+    descripcion    :   Huevos
+    lista          :   lista3
+
+Articulo(articulo9):
+    descripcion    :   Papaya
+    lista          :   lista3
+    isPendiente    :   false
+
+Articulo(articulo10):
+    descripcion    :   Guanabana
+    lista          :   lista3
+
+
+
+
+
+

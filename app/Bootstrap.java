@@ -1,7 +1,6 @@
-import models.Listado;
-import play.jobs.Job;
-import play.jobs.OnApplicationStart;
-import play.test.Fixtures;
+import models.*;
+import play.jobs.*;
+import play.test.*;
 
 /**
  * Created by caldep on 21/04/15.
@@ -13,7 +12,8 @@ public class Bootstrap extends Job {
     {
         if(Listado.count() == 0)
         {
-            Fixtures.loadYamlAsMap("data-inicial.yml");
+            Fixtures.deleteAll();
+            Fixtures.load("data-inicial.yml");
         }
     }
 }
