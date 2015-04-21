@@ -1,0 +1,25 @@
+*{ Muestra una Lista en uno de los siguientes modos: 'completo', 'titulo' }*
+
+<div class="post">
+    <h2 class="post-title">
+        <a href="#">${_lista.nombre}</a>
+    </h2>
+    <div class="post-metadata">
+        <span class="post-date">Creado: ${_lista.feCreacion.format('dd/MM/yyyy')}</span>
+            <span class="post-comments">
+                &nbsp;|&nbsp;
+                Contiene: ${_lista.articulos.size() ?: '0 '}
+                artículo${_lista.articulos.size().pluralize()}
+            </span>
+    </div>
+    #{if _modo == "completo"}
+        #{list items:_lista.articulos, as:'articuloLista'}
+        <div class="post">
+            <h2 class="post-title">
+                <input type="checkbox" id="ch${articuloLista.id}" name="ch${articuloLista.id}" #{if articuloLista.isPendiente==false } checked #{/if} >
+                <input type="text"     id="art${articuloLista.id}" name="art${articuloLista.id}" value="${articuloLista.descripcion}">
+            </h2>
+        </div>
+        #{/list}
+    #{/if}
+</div>
