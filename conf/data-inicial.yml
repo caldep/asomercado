@@ -1,0 +1,45 @@
+# you describe your data using the YAML notation here
+# and then load them using Fixtures.load("data.yml")
+
+# User(bob):
+#   email: bob@gmail.com
+#   password: secret
+#   fullname: Bob
+
+Listado(lista1):
+    nombre         :   listado1
+    feCreacion     :   2015-04-20
+    feModificacion :   2015-04-20
+
+Listado(lista2):
+    nombre         :   listado2
+    feCreacion     :   2015-04-21
+    feModificacion :   2015-04-21
+
+Articulo(articulo1):
+    descripcion    :   Tomate
+    lista          :   lista1
+
+Articulo(articulo2):
+    descripcion    :   Cebolla
+    lista          :   lista1
+
+Articulo(articulo3):
+    descripcion    :   Pepino
+    lista          :   lista1
+
+Articulo(articulo4):
+    descripcion    :   Carne
+    lista          :   lista2
+
+Articulo(articulo5):
+    descripcion    :   Pollo
+    lista          :   lista2
+
+Articulo(articulo6):
+    descripcion    :   Pescado
+    lista          :   lista2
+
+Articulo(articulo7):
+    descripcion    :   Lechuga
+    lista          :   lista1
