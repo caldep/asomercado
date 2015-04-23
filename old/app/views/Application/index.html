@@ -1,0 +1,22 @@
+#{extends 'main.html' /}
+#{set title:'Principal' /}
+
+#{if ultimaLista}
+    #{display lista:ultimaLista, modo:'completo' /}
+    <hr>
+    #{if listados}
+        <div class="older-posts">
+            <h3>
+                <span class="from">Listados recientes</span>
+            </h3>
+            #{list items:listados, as:'oldLista'}
+                #{display lista:oldLista, modo:'sola' /}
+            #{/list}
+        </div>
+    #{/if}
+#{/if}
+#{else}
+    <div class="empty">
+        No hay listas creadas.
+    </div>
+#{/else}
