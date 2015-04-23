@@ -38,5 +38,12 @@ public class Listado extends Model{
         return this;
     }
     //------------------------------------------------------
-
+    public Listado siguiente() {
+        return Listado.find("id > ? ", id).first();
+    }
+    //------------------------------------------------------
+    public Listado anterior() {
+        return Listado.find("id < ?", id).first();
+    }
+    //------------------------------------------------------
 }

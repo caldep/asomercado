@@ -10,11 +10,28 @@ import java.util.*;
 
 public class Application extends Controller {
 
-    public static void index()
+    public static void index(Long idListado)
     {
-        Listado ultimaLista = Listado.find("order by feCreacion desc").first();
-        List<Listado> listados = Listado.find("order by feCreacion desc").from(1).fetch(10);
+        Listado ultimaLista;
+        List<Listado> listados;
+
+        if(idListado != null)
+        {
+            ultimaLista    = Listado.find("byId",idListado).first();
+            listados = Listado.find("where id<>",idListado).from(0).fetch(10);
+        }
+        else
+        {
+            ultimaLista    = Listado.find("order by feCreacion desc").first();
+            listados = Listado.find("order by feCreacion desc").from(1).fetch(10);
+        }
+
         render(ultimaLista,listados);
     }
+    //-------------------------------------------------------------------------------
 
+    public static void show(Long id){
+        Listado listaMostrar = Listado.findById(id);
+        render(listaMostrar);
+    }
 }
