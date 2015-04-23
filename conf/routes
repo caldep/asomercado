@@ -4,7 +4,9 @@
 
 # Home page
 GET     /                                       Application.index
-GET     /listado/{id}                          Application.show
+GET     /listado/{id}                           Application.show
+POST    /articulo/guardar                       Application.guardarArticulo
+POST    /listado/guardar                        Application.guardarListado
 # Ignore favicon requests
 GET     /favicon.ico                            404
 

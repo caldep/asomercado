@@ -1,13 +1,21 @@
 *{ Muestra una Lista en uno de los siguientes modos: 'completo', 'sola' }*
-<script src="@{'/public/javascripts/functions.js'}" type="text/javascript" charset="${_response_encoding}"></script>
 
+<script src="@{'/public/javascripts/functions.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+<script>
+	 $(document).ready(
+	    function() {
+            var objLista = $("#${_lista.id}");
+	        objLista.focus();
+	        }
+	   );
+	 </script>
 <div class="post">
 
     #{if _modo != "completoEdicion"}
-        <h2 class="post-title"><a href="@{Application.show(_lista.id)}">${_lista.nombre}</a></h2>
+        <h2 class="post-title" contenteditable="false"><a href="@{Application.show(_lista.id)}">${_lista.nombre}</a></h2>
     #{/if}
     #{else}
-        <h2 contenteditable="true">${_lista.nombre}</h2>
+        <h2 id="${_lista.id}" contenteditable="true" onkeydown="preTecla(event,this,'listado');" onkeyup="postTecla(event,this,'listado');">${_lista.nombre}</h2>
     #{/else}
 
     <div class="post-metadata">
@@ -22,7 +30,7 @@
         <div class="post">
         <ul id="listaLista"  type="circle">
             #{list items:_lista.articulos, as:'articuloLista'}
-            <li id="art-${articuloLista.id}" contenteditable="true" onkeydown="preTecla(event,this);" onkeyup="postTecla(event,this);">${articuloLista.descripcion}</li>
+            <li id="${_lista.id}-${articuloLista.id}" contenteditable="true" onkeydown="preTecla(event,this,'articulo');" onkeyup="postTecla(event,this,'articulo');">${articuloLista.descripcion}</li>
             #{/list}
         </ul>
         </div>
