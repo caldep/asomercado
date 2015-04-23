@@ -3,6 +3,8 @@ package controllers;
 import play.mvc.Controller;
 import models.*;
 
+import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
 import java.util.*;
 
 /**
@@ -52,6 +54,25 @@ public class ListadoController extends Controller {
             newLista.save();
         }
 
+    }
+    //--------------------------------------------------------------------------------------
+    public static void eliminarListado(Long idListado){
+
+        Listado lista = Listado.findById(idListado);
+
+
+        for (int i=0; i < lista.articulos.size(); i++) {
+            lista.articulos.get(i).delete();
+        }
+        lista.articulos.clear();
+
+        lista.delete();
+    }
+    //--------------------------------------------------------------------------------------
+    public static void eliminarArticulo(Long idArticulo){
+
+        Articulo item = Articulo.findById(idArticulo);
+        item.delete();
     }
     //--------------------------------------------------------------------------------------
 }

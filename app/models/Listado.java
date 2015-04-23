@@ -1,6 +1,5 @@
 package models;
 
-import org.hibernate.annotations.Type;
 import play.db.jpa.*;
 import java.util.*;
 import javax.persistence.*;
@@ -17,7 +16,7 @@ public class Listado extends Model{
     public Date     feModificacion;
     public Boolean  isActivo;
 
-    @OneToMany(mappedBy="lista", cascade=CascadeType.ALL)
+    @OneToMany(mappedBy="lista", cascade=CascadeType.ALL, orphanRemoval = true)
     public List<Articulo> articulos;
 
     //-----------------------------------------------------
@@ -46,4 +45,5 @@ public class Listado extends Model{
         return Listado.find("id < ?", id).first();
     }
     //------------------------------------------------------
+
 }

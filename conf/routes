@@ -7,6 +7,9 @@ GET     /                                       Application.index
 GET     /listado/{id}                           ListadoController.show
 POST    /articulo/guardar                       ListadoController.guardarArticulo
 POST    /listado/guardar                        ListadoController.guardarListado
+POST    /listado/eliminar                       ListadoController.eliminarListado
+POST    /articulo/eliminar                      ListadoController.eliminarArticulo
+
 # Ignore favicon requests
 GET     /favicon.ico                            404
 

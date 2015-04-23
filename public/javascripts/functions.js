@@ -26,31 +26,43 @@ function preTecla(tecla,itemLista,tipo)
                     $("#title").html("Escape");
                     break;
                 }
-                /*
+
                 case 46:{ //Suprimir
                     tecla.preventDefault();
-                    if (confirm('¿Confirma eliminar el artículo de la lista?')){
-                        $("#title").html("Eliminar Articulo: "+idItem);
-                        /*
-                        $.ajax({
-                            type: 'POST',
-                            data: {
-                                accion: 'eliminar',
-                                orden: punto.index(),
-                                id: idPunto
-                            },
-                            url: 'controlador.php',
-                            success: function(e){
-                                punto.fadeOut('slow').remove();
-                            }
-                        });
-
+                    var mensaje;
+                    mensaje = (tipo == 'articulo')?'el artículo de la lista?':'la lista?';
+                    if (confirm('¿Confirma eliminar '+mensaje)){
+                        if(tipo == 'articulo'){
+                            $.ajax({
+                                type: 'POST',
+                                data: {
+                                    idArticulo  : idItem
+                                },
+                                url: '/articulo/eliminar',
+                                success: function(e){
+                                    $(itemLista).fadeOut('slow').remove();
+                                }
+                                });
                         }
+                        if(tipo == 'listado'){
+                            $.ajax({
+                                    type: 'POST',
+                                    data: {
+                                        idListado     : idLista
+                                    },
+                                    url: '/listado/eliminar',
+                                    success: function(e){
+                                        $(itemLista).fadeOut('slow').remove();
+                                    }
+                                    });
+                        }
+
+                    }
                     else
                         document.execCommand('undo');
                     break;
                 }
-                */
+
                 case 13:{ //Enter
                     $("#title").html("Agregar otra linea");
                     tecla.preventDefault();
