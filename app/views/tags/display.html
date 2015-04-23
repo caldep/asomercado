@@ -12,7 +12,7 @@
 <div class="post">
 
     #{if _modo != "completoEdicion"}
-        <h2 class="post-title" contenteditable="false"><a href="@{Application.show(_lista.id)}">${_lista.nombre}</a></h2>
+        <h2 class="post-title" contenteditable="false"><a href="@{ListadoController.show(_lista.id)}">${_lista.nombre}</a></h2>
     #{/if}
     #{else}
         <h2 id="${_lista.id}" contenteditable="true" onkeydown="preTecla(event,this,'listado');" onkeyup="postTecla(event,this,'listado');">${_lista.nombre}</h2>
