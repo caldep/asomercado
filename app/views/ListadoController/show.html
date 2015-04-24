@@ -25,3 +25,45 @@
     No existe la lista solicitada.
 </div>
 #{/else}
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- >
+#{extends 'main.html' /}
+#{if listaMostrar != null}
+    #{set title:listaMostrar.nombre /}
+    #{display lista:listaMostrar, modo:'completoEdicion' /}
+    <h3 contenteditable="false">Otras listas</h3>
+    <ul id="paginacion">
+        #{if listaMostrar.anterior()}
+        <li id="previous">
+            Lista anterior:&nbsp;&nbsp;&nbsp;<a href="@{ListadoController.show(listaMostrar.anterior().id)}">
+            ${listaMostrar.anterior().nombre}
+            </a>
+        </li>
+        #{/if}
+        #{if listaMostrar.siguiente()}
+        <li id="next">
+            Lista siguiente:&nbsp;<a href="@{ListadoController.show(listaMostrar.siguiente().id)}">
+                ${listaMostrar.siguiente().nombre}
+            </a>
+        </li>
+        #{/if}
+    </ul>
+#{/if}
+#{else}
+<div class="empty">
+    No existe la lista solicitada.
+</div>
+#{/else}
+<-->

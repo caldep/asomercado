@@ -1,6 +1,13 @@
 *{ Muestra una Lista en uno de los siguientes modos: 'completo', 'sola' }*
-
+#{set "moreStyles"}
+<link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/listas.css'}">
+#{/set}
+#{set "moreScripts"}
+<script type="text/javascript" src="@{'/public/javascripts/ext/jquery-1.7.2.min.js'}"></script>
+<script type="text/javascript" src="@{'/public/javascripts/listas.js'}"></script>
 <script src="@{'/public/javascripts/functions.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+#{/set}
+
 <script>
 	 $(document).ready(
 	    function() {
