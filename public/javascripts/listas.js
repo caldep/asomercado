@@ -71,11 +71,23 @@ $(function(){
 		var $ulLista=$('#divLista').find('ul');
 		//buscamos el padre del boton (el tag li en el que se encuentra)
 		var $liPadre=$($(this).parents().get(0));
-		
-		//eliminamos el elemento
-		$liPadre.remove();
-		//si la listaesta vacia entonces la eliminamos del dom
-		if($ulLista.find('li').length==0) $ulLista.remove();
+		var idItem = $liPadre.context.attributes.id;
+		idItem = idItem.value.split('-');
+		$.ajax({
+			type: 'POST',
+			data: {
+				idArticulo  : idItem[1]
+			},
+			url: '/articulo/eliminar',
+			success: function(e){
+				//eliminamos el elemento
+				$liPadre.remove();
+				//si la listaesta vacia entonces la eliminamos del dom
+				if($ulLista.find('li').length==0) $ulLista.remove();
+			}
+			});
+
+
 	});
 	
 	//eliminamos los elementos impares en la lista (odd)
