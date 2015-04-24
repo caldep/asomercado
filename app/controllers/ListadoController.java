@@ -18,7 +18,7 @@ public class ListadoController extends Controller {
         render(listaMostrar);
     }
     //--------------------------------------------------------------------------------
-    public static void guardarArticulo(Long idArticulo, String descripcion, Long idLista){
+    public static Long guardarArticulo(Long idArticulo, String descripcion, Long idLista){
 
         Articulo item = Articulo.findById(idArticulo);
         Listado lista = Listado.findById(idLista);
@@ -32,12 +32,13 @@ public class ListadoController extends Controller {
         else{
             //agrega nuevo articulo
             lista.addArticulo(descripcion);
+            idArticulo = lista.articulos.get(lista.articulos.size()-1).getId();
         }
         lista.save();
-
+        return idArticulo;
     }
     //------------------------------------------------------------------------------------
-    public static void guardarListado(Long idLista, String nombre){
+    public static Long guardarListado(Long idLista, String nombre){
 
         Listado lista = Listado.findById(idLista);
 
@@ -52,27 +53,22 @@ public class ListadoController extends Controller {
             //agrega nueva lista
             Listado newLista = new Listado(nombre);
             newLista.save();
+            idLista = newLista.getId();
         }
-
+        return idLista;
     }
     //--------------------------------------------------------------------------------------
     public static void eliminarListado(Long idListado){
-
         Listado lista = Listado.findById(idListado);
-
-
-        for (int i=0; i < lista.articulos.size(); i++) {
-            lista.articulos.get(i).delete();
-        }
-        lista.articulos.clear();
-
-        lista.delete();
+        lista.eliminar();
     }
     //--------------------------------------------------------------------------------------
     public static void eliminarArticulo(Long idArticulo){
-
         Articulo item = Articulo.findById(idArticulo);
         item.delete();
     }
     //--------------------------------------------------------------------------------------
+    public static void nuevaLista(){
+        render();
+    }
 }

@@ -4,11 +4,13 @@
 
 # Home page
 GET     /                                       Application.index
+GET     /listado/nuevo                          ListadoController.nuevaLista
 GET     /listado/{id}                           ListadoController.show
 POST    /articulo/guardar                       ListadoController.guardarArticulo
 POST    /listado/guardar                        ListadoController.guardarListado
 POST    /listado/eliminar                       ListadoController.eliminarListado
 POST    /articulo/eliminar                      ListadoController.eliminarArticulo
+
 
 # Ignore favicon requests
 GET     /favicon.ico                            404
@@ -18,3 +20,5 @@ GET     /public/                                staticDir:public
 
 # Catch all
 *       /{controller}/{action}                  {controller}.{action}
+# Importar routes del módulo CRUD
+*      /admin              module:crud

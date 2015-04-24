@@ -1,0 +1,49 @@
+#{extends 'main.html' /}
+#{set "moreStyles"}
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/listas.css'}">
+#{/set}
+#{set "moreScripts"}
+    <script type="text/javascript" src="@{'/public/javascripts/ext/jquery-1.7.2.min.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/listas.js'}"></script>
+    <script src="@{'/public/javascripts/functions.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+#{/set}
+#{set title:'Nueva Lista' /}
+
+<div id="divContenedor">
+    <div id="divInfo">
+        <h1>Nueva Lista</h1>
+        <p>
+            <div id="divEjemplo1">
+            <label for="txtNombreLista">Nombre: </label>
+            <input type="text" id="txtNombreLista" size="80" placeholder="Nombre de la lista" onkeydown="preTecla(event,this,'listadoNuevo');" onkeyup="postTecla(event,this,'listadoNuevo');">
+            </div>
+        </p>
+    </div>
+    <div id="divEjemplo" >
+        <div id="divControles">
+            <label for="txtNombre">Artículo: </label>
+            <input type="text" id="txtNombre" size="70" placeholder="Descripción del artículo">
+            <input type="button" value="Agregar" id="btnAgregar">
+            <div class="clsSalto"></div>
+            <div class="clsSalto"></div>
+        </div>
+        <div id="divLista"></div>
+        <div class="clsSalto"></div>
+        <div class="clsSalto"></div>
+        <div class="clsDerecha">
+            <!--input type="button" value="Eliminar pares" id="btnEliminarPares">
+            <input type="button" value="Eliminar impares" id="btnEliminarImpares">
+            <input type="button" value="Guardar" id="btnGuardarLista"-->
+        </div>
+    </div>
+</div>
+
+<script>
+	 $(document).ready(
+	    function() {
+            $("#divEjemplo").hide();
+            var objLista = $("#txtNombreLista");
+	        objLista.focus();
+	        }
+	   );
+</script>

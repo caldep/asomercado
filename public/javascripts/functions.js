@@ -28,56 +28,74 @@ function preTecla(tecla,itemLista,tipo)
                 }
 
                 case 46:{ //Suprimir
-                    tecla.preventDefault();
-                    var mensaje;
-                    mensaje = (tipo == 'articulo')?'el artículo de la lista?':'la lista?';
-                    if (confirm('¿Confirma eliminar '+mensaje)){
-                        if(tipo == 'articulo'){
-                            $.ajax({
-                                type: 'POST',
-                                data: {
-                                    idArticulo  : idItem
-                                },
-                                url: '/articulo/eliminar',
-                                success: function(e){
-                                    $(itemLista).fadeOut('slow').remove();
-                                }
-                                });
-                        }
-                        if(tipo == 'listado'){
-                            $.ajax({
+                    if(tipo != 'listadoNuevo'){
+                        tecla.preventDefault();
+                        var mensaje;
+                        mensaje = (tipo == 'articulo')?'el artículo de la lista?':'la lista?';
+
+                        if (confirm('¿Confirma eliminar '+mensaje)){
+                            if(tipo == 'articulo'){
+                                $.ajax({
                                     type: 'POST',
                                     data: {
-                                        idListado     : idLista
+                                        idArticulo  : idItem
                                     },
-                                    url: '/listado/eliminar',
+                                    url: '/articulo/eliminar',
                                     success: function(e){
                                         $(itemLista).fadeOut('slow').remove();
                                     }
                                     });
-                        }
+                            }
+                            if(tipo == 'listado'){
+                                $.ajax({
+                                        type: 'POST',
+                                        data: {
+                                            idListado     : idLista
+                                        },
+                                        url: '/listado/eliminar',
+                                        success: function(e){
+                                            $(itemLista).fadeOut('slow').remove();
+                                            window.location.href = "/";
+                                        }
+                                        });
+                            }
 
                     }
-                    else
-                        document.execCommand('undo');
+                        else
+                            document.execCommand('undo');
+                        }
                     break;
                 }
 
                 case 13:{ //Enter
-                    $("#title").html("Agregar otra linea");
-                    tecla.preventDefault();
-                   /*
-                    var texto = punto.text();
-                    punto.blur();
-                    $.ajax({
-                        type: 'POST',
-                        data: {
-                            accion: 'editar',
-                            id: idPunto,
-                            nombre: texto
-                        },
-                        url: 'controlador.php'
-                    });*/
+                    if(tipo == 'listadoNuevo'){
+                        if($("#txtNombreLista").val() != ''){
+                            tecla.preventDefault();
+                            var idList = 0;
+                            if($("#idListaHdn").length)
+                                idList = $("#idListaHdn").val();
+
+                            $.ajax({
+                                type: 'POST',
+                                data: {
+                                    idLista     : idList,
+                                    nombre      : $("#txtNombreLista").val()
+                                },
+                                url: '/listado/guardar',
+                                success: function(e){
+                                    if(idList == 0){
+                                    var x = document.createElement("INPUT");
+                                        x.setAttribute("type", "hidden");
+                                        x.setAttribute("value", e);
+                                        x.setAttribute("id", "idListaHdn");
+                                        document.body.appendChild(x);
+                                    }
+                                    $("#divEjemplo").show();
+                                }
+                                });
+                        }
+
+                    }
                     break;
                 }
             }
@@ -115,7 +133,33 @@ function postTecla(tecla,itemLista,tipo) {
                     }
                     });
         }
+        if(tipo == 'listadoNuevo' && false){
 
+            if($("#txtNombreLista").val() != ''){
+                var idList = 0;
+                if($("#idListaHdn").length)
+                    idList = $("#idListaHdn").val();
+
+                $.ajax({
+                    type: 'POST',
+                    data: {
+                        idLista     : idList,
+                        nombre      : $("#txtNombreLista").val()
+                    },
+                    url: '/listado/guardar',
+                    success: function(e){
+                        if(idList == 0){
+                        var x = document.createElement("INPUT");
+                            x.setAttribute("type", "hidden");
+                            x.setAttribute("value", e);
+                            x.setAttribute("id", "idListaHdn");
+                            document.body.appendChild(x);
+                        }
+                        $("#divEjemplo").show();
+                    }
+                    });
+            }
+        }
     }
 }
 //--------------------------------------------------------------------------------
