@@ -57,12 +57,10 @@ public class BasicTest extends UnitTest {
         // Verifica contenido del primer articulo
         Articulo primerArticulo = articulos.get(0);
         assertEquals("Tomate", primerArticulo.descripcion);
-        assertEquals(true, primerArticulo.isPendiente);
 
         // Verifica contenido del segundo articulo
         Articulo segundoArticulo = articulos.get(1);
         assertEquals("Cebolla", segundoArticulo.descripcion);
-        assertEquals(true, segundoArticulo.isPendiente);
 
     }
     //-----------------------------------------------------------------------------------
